@@ -25,14 +25,14 @@ jobs:
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest .
-        docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest
+        gcloud auth configure-docker europe-west2-docker.pkg.dev
+        docker build -t europe-west2-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest .
+        docker push europe-west2-docker.pkg.dev/$GOOGLE_PROJECT/demo/nginx:latest
 
     - name: deploy to gke
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1
+        gcloud container clusters get-credentials autopilot-cluster-1 --region europe-west2
         sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
         kubectl apply -f resources.yaml
