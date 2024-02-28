@@ -30,3 +30,10 @@ spec:
       containers:
       - name: nginx
         image: europe-west2-docker.pkg.dev/GOOGLE_PROJECT/demo/nginx:latest
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
