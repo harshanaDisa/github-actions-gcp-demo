@@ -33,6 +33,6 @@ jobs:
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud container clusters get-credentials autopilot-cluster-1 --region europe-west2
+        gcloud container clusters get-credentials autopilot-prod-cluster --region europe-west2
         sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
         kubectl apply -f resources.yaml
